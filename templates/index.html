@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Navigation</title>
+</head>
+<body>
+    <h1>Article Details. https://zafarshodmonov1996.pythonanywhere.com/get/1</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>URL</th>
+        </tr>
+        <tr>
+            <td id="article-id">1</td>
+            <td id="article-title">SQL Many-to-Many Munosabatlari</td>
+            <td><a id="article-url" href="https://zafarshodmonov1996.pythonanywhere.com/get/1" target="_blank">https://zafarshodmonov1996.pythonanywhere.com/get/1</a></td>
+
+        </tr>
+        <tr>
+            <td id="article-id">2</td>
+            <td id="article-title">PostgreSQL Test Ma'lumot Yaratish</td>
+            <td><a id="article-url" href="https://zafarshodmonov1996.pythonanywhere.com/get/2" target="_blank">https://zafarshodmonov1996.pythonanywhere.com/get/2</a></td>
+
+        </tr>
+    </table>
+   
+
+    <script>
+        let currentId = 1;
+        function updateArticle() {
+            document.getElementById('article-id').textContent = currentId;
+            document.getElementById('article-url').href = `https://zafarshodmonov1996.pythonanywhere.com/get/${currentId}`;
+            document.getElementById('next-article').href = `https://zafarshodmonov1996.pythonanywhere.com/get/${currentId + 1}`;
+        }
+        updateArticle();
+    </script>
+</body>
+</html>
