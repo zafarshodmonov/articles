@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talabalar va Kurslar - SQL Topshiriqlar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>SQL Many-to-Many Munosabatlari</h1>
+
+        <h2>1-topshiriq: Talabalar va Kurslar</h2>
+        <p><strong>Tavsif:</strong> Talabalar turli kurslarga yozilishi mumkin, va bir kursda bir nechta talabalar bo‘lishi mumkin. Many-to-many munosabatni yaratish uchun <code>studenttocourse</code> bog‘lovchi jadvali ishlatiladi.</p>
+        <p><strong>Jadvallar:</strong></p>
+        <pre>
+- student (id, name, email)
+- course (id, title, credits)
+- studenttocourse (id, student_id, course_id, enrollment_date)
+        </pre>
+        <p><strong>Vazifalar:</strong></p>
+        <ul>
+            <li>✅ CSV fayldan talabalar va kurslar ma'lumotlarini yuklash</li>
+            <li>✅ Talabalarni kurslarga bog‘lash</li>
+            <li>✅ Keraksiz ustunlarni o‘chirish</li>
+        </ul>
+        <p><strong>Natijani tekshirish uchun SQL so‘rovi:</strong></p>
+        <pre>
+SELECT student.name, course.title, studenttocourse.enrollment_date
+FROM student
+JOIN studenttocourse ON student.id = studenttocourse.student_id
+JOIN course ON studenttocourse.course_id = course.id
+ORDER BY student.name
+LIMIT 5;
+        </pre>
+
+        <h2>2-topshiriq: Kitoblar va Mualliflar</h2>
+        <p><strong>Tavsif:</strong> Bir kitobni bir nechta muallif yozgan bo‘lishi mumkin va bir muallif bir nechta kitob muallifi bo‘lishi mumkin. Many-to-many munosabatni yaratish uchun <code>booktoauthor</code> jadvali ishlatiladi.</p>
+        <p><strong>Natijani tekshirish uchun SQL so‘rovi:</strong></p>
+        <pre>
+SELECT book.title, author.name, book.genre
+FROM book
+JOIN booktoauthor ON book.id = booktoauthor.book_id
+JOIN author ON booktoauthor.author_id = author.id
+ORDER BY book.title
+LIMIT 5;
+        </pre>
+
+        <h2>3-topshiriq: Sportchilar va Musobaqalar</h2>
+        <p><strong>Natijani tekshirish uchun SQL so‘rovi:</strong></p>
+        <pre>
+SELECT athlete.name, event.title, event.year, athletetoevent.position
+FROM athlete
+JOIN athletetoevent ON athlete.id = athletetoevent.athlete_id
+JOIN event ON athletetoevent.event_id = event.id
+ORDER BY athlete.name
+LIMIT 5;
+        </pre>
+
+        <h2>4-topshiriq: Filmlar va Aktyorlar</h2>
+        <p><strong>Natijani tekshirish uchun SQL so‘rovi:</strong></p>
+        <pre>
+SELECT movie.title, actor.name, movietoactor.role
+FROM movie
+JOIN movietoactor ON movie.id = movietoactor.movie_id
+JOIN actor ON movietoactor.actor_id = actor.id
+ORDER BY movie.title
+LIMIT 5;
+        </pre>
+
+        <h2>5-topshiriq: O‘quvchilar va Kitoblar</h2>
+        <p><strong>Natijani tekshirish uchun SQL so‘rovi:</strong></p>
+        <pre>
+SELECT reader.name, book.title, readertobook.borrow_date, readertobook.return_date
+FROM reader
+JOIN readertobook ON reader.id = readertobook.reader_id
+JOIN book ON readertobook.book_id = book.id
+ORDER BY reader.name
+LIMIT 5;
+        </pre>
+
+    </div>
+
+</body>
+</html>

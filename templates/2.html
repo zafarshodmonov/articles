@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PostgreSQL Test Ma'lumot Yaratish</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+        code { background: #f4f4f4; padding: 2px 5px; border-radius: 3px; }
+        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>PostgreSQL Test Ma'lumot Yaratish</h1>
+    <p>Ko‘pincha <strong>SQL so‘rovlarining samaradorligini tekshirish</strong> uchun <strong>ko‘p miqdorda ma'lumot</strong> kerak bo‘ladi.</p>
+    
+    <h2>1. <code>random()</code> - Tasodifiy sonlar yaratish</h2>
+    <pre><code>SELECT random();</code></pre>
+    <p>Agar butun son kerak bo‘lsa:</p>
+    <pre><code>SELECT trunc(random() * 100);</code></pre>
+    
+    <h2>2. <code>repeat()</code> - Matnlarni qaytarish</h2>
+    <pre><code>SELECT repeat('ABC', 5);</code></pre>
+    
+    <h2>3. <code>generate_series()</code> - Ko‘p qator ma'lumot yaratish</h2>
+    <pre><code>SELECT generate_series(1, 5);</code></pre>
+    
+    <h2>Barcha funksiyalarni birlashtirib, katta hajmli test ma'lumot yaratish</h2>
+    <pre><code>SELECT 'sql4e.com/neon' || trunc(random() * 1000000) || repeat('lemon', 5) 
+FROM generate_series(1, 5);</code></pre>
+</body>
+</html>
